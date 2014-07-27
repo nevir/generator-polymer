@@ -3,12 +3,30 @@ var yeoman = require('yeoman-generator');
 var path = require('path');
 
 module.exports = yeoman.generators.Base.extend({
+  askFor: function () {
+    var done = this.async();
+
+    var prompts = [
+      {
+        name: 'externalCSS',
+        message: 'Would you like an external CSS file for this element?',
+        type: 'confirm'
+      }
+    ];
+
+    this.prompt(prompts, function (props) {
+      this.includeCore = props.includeCore;
+      this.includePaper = props.includePaper;
+
+      done();
+    }.bind(this));
+  },
   el: function () {
     this.elementName = this.args[0];
     if (!this.elementName) {
       console.error('Element name required');
       console.error('ex: yo polymer:el my-element');
-      return
+      return;
     }
 
     if (this.elementName.indexOf('-') === -1) {
