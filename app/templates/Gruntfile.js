@@ -260,7 +260,8 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,txt}',
             '.htaccess',
-            'elements/**',
+            'elements/**',<% if (includeSass) { %>
+            '!elements/**/*.scss',<% } %>
             'images/{,*/}*.{webp,gif}',
             'bower_components/**'
           ]
