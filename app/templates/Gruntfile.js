@@ -28,7 +28,7 @@ module.exports = function (grunt) {
     watch: {
       options: {
         nospawn: true,
-        livereload: LIVERELOAD_PORT
+        livereload: { liveCSS: false }
       },
       livereload: {
         options: {
